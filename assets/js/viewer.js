@@ -36,16 +36,23 @@
     btn.type = "button";
     btn.setAttribute("aria-label", "Open carousel: " + c.title);
     var n = c.slides.length;
+    var icon =
+      '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">' +
+        '<rect x="7.5" y="4" width="12.5" height="12.5" rx="3" fill="#fff" opacity=".5"/>' +
+        '<rect x="4" y="7.5" width="12.5" height="12.5" rx="3" fill="#fff"/>' +
+      "</svg>";
     btn.innerHTML =
       '<div class="cover">' +
-        '<span class="badge">' + n + " slides</span>" +
+        '<span class="ig-ic" title="Multiple images">' + icon + "</span>" +
+        '<span class="count-pill">1 / ' + n + "</span>" +
         '<img src="' + esc(c.dir) + "/" + esc(c.cover) + '" alt="' + esc(c.title) + '" loading="lazy">' +
+        '<span class="cover-hint"><span class="hint-pill">View all ' + n + " ›</span></span>" +
       "</div>" +
       '<div class="cc-body">' +
         (c.tag ? '<span class="tag">' + esc(c.tag) + "</span>" : "") +
         "<h3>" + esc(c.title) + "</h3>" +
         "<p>" + esc(c.blurb || "") + "</p>" +
-        '<span class="view">View carousel →</span>' +
+        '<span class="view">Swipe through all ' + n + " slides →</span>" +
       "</div>";
     btn.addEventListener("click", function () { open(c, btn); });
     return btn;
