@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Media — Punted It</title>
+<meta name="description" content="AFL Instagram carousels by Punted It — swipe through every slide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Punted It<span class="dot">.</span><small>AFL data &amp; content</small></a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../Hawthorn_2026_Report.html">Reports</a>
+      <a href="https://www.instagram.com/puntedit/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow"><a href="../index.html" style="color:inherit">← Home</a></p>
+      <h1>Social Media</h1>
+      <p class="lede">Instagram carousels for <a href="https://www.instagram.com/puntedit/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">@puntedit</a>. Tap any cover to swipe through the full set of slides.</p>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="count-head">Carousels</h2>
+        <span class="meta">Tap to view · arrow keys &amp; swipe supported</span>
+      </div>
+      <hr class="rule" style="margin-bottom:30px">
+      <div class="card-grid" id="grid" aria-live="polite">
+        <p id="loading" style="color:var(--ink-faint)">Loading carousels…</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Viewer overlay -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Carousel viewer">
+  <div class="viewer-stage">
+    <button class="v-close" id="vClose" aria-label="Close">✕</button>
+    <button class="v-nav prev" id="vPrev" aria-label="Previous slide">‹</button>
+    <img class="viewer-img" id="vImg" alt="">
+    <button class="v-nav next" id="vNext" aria-label="Next slide">›</button>
+    <div class="v-meta">
+      <span class="v-title" id="vTitle"></span>
+      <div class="v-dots" id="vDots"></div>
+      <span class="v-counter" id="vCounter"></span>
+    </div>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Punted It — AFL data &amp; content.</span>
+    <span class="foot-links">
+      <a href="https://www.instagram.com/puntedit/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://github.com/dough1e/afl-data-report" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script src="../assets/js/viewer.js"></script>
+</body>
+</html>

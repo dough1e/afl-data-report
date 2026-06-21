@@ -1,0 +1,14 @@
+# Local secrets — never commit a real token
+.env
+.env.*
+!.env.example
+
+# Instagram puller scratch / downloads-in-progress
+tools/_ig_raw/
+*_probe.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

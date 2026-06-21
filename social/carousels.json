@@ -1,0 +1,53 @@
+{
+  "updated": "2026-06-21",
+  "carousels": [
+    {
+      "slug": "cameron-10-goals",
+      "title": "Jeremy Cameron bags 10",
+      "blurb": "Geelong's first 10-goal game since Ablett Sr in 1994 — seven of them before half-time.",
+      "tag": "Round 6, 2026",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png"]
+    },
+    {
+      "slug": "pendlebury-record",
+      "title": "Pendlebury equals the record",
+      "blurb": "432 games — level with the all-time VFL/AFL games record. 21 seasons, one club.",
+      "tag": "Round 9, 2026",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png", "slide_06.png"]
+    },
+    {
+      "slug": "fremantle-streak",
+      "title": "8 straight — Freo are coming",
+      "blurb": "Eight wins on the bounce after a Round 1 loss. The Dockers sit 8-1, conceding a league-best 68 points a game.",
+      "tag": "Round 9, 2026",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png", "slide_06.png"]
+    },
+    {
+      "slug": "berry-19-tackles",
+      "title": "Sam Berry's 19-tackle Showdown",
+      "blurb": "19 tackles in Showdown 59 — the second-most in any AFL game ever, one short of the all-time record.",
+      "tag": "Showdown 59, 2026",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png"]
+    },
+    {
+      "slug": "bailey-smith-dominance",
+      "title": "Bailey Smith runs the comp",
+      "blurb": "Leading the AFL in disposals for a second straight season at 33.3 a game. The best mid in the game?",
+      "tag": "2026 season",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png"]
+    },
+    {
+      "slug": "gunston-34-goals",
+      "title": "Jack Gunston — 34 and still elite",
+      "blurb": "19 goals through Round 6 and 3rd on the Coleman ladder — on pace for a career-best haul at 34.",
+      "tag": "Round 6, 2026",
+      "cover": "slide_01.png",
+      "slides": ["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png"]
+    }
+  ]
+}
