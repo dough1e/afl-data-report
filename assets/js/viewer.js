@@ -1,4 +1,4 @@
-/* Punted It — gallery builder + carousel lightbox. Vanilla JS, no deps. */
+/* AFL infographics showcase — gallery builder + carousel lightbox. Vanilla JS, no deps. */
 (function () {
   "use strict";
 
@@ -15,14 +15,13 @@
   var vTitle = document.getElementById("vTitle");
   var vCounter = document.getElementById("vCounter");
 
-  var current = null; // { slug, title, slides: [] }
+  var current = null; // { dir, title, slides: [] }
   var index = 0;
   var lastFocus = null;
 
-  function el(tag, cls, html) {
+  function el(tag, cls) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
-    if (html != null) n.innerHTML = html;
     return n;
   }
 
@@ -40,7 +39,7 @@
     btn.innerHTML =
       '<div class="cover">' +
         '<span class="badge">' + n + " slides</span>" +
-        '<img src="' + esc(c.slug) + "/" + esc(c.cover) + '" alt="' + esc(c.title) + '" loading="lazy">' +
+        '<img src="' + esc(c.dir) + "/" + esc(c.cover) + '" alt="' + esc(c.title) + '" loading="lazy">' +
       "</div>" +
       '<div class="cc-body">' +
         (c.tag ? '<span class="tag">' + esc(c.tag) + "</span>" : "") +
@@ -55,15 +54,14 @@
   function render(list) {
     grid.innerHTML = "";
     list.forEach(function (c) { grid.appendChild(buildCard(c)); });
-    if (countHead) countHead.textContent = list.length + (list.length === 1 ? " carousel" : " carousels");
+    if (countHead) countHead.textContent = list.length + (list.length === 1 ? " carousel" : " carousels") + " · tap to view";
   }
 
   /* ---------- Viewer ---------- */
   function buildDots(n) {
     vDots.innerHTML = "";
     for (var i = 0; i < n; i++) {
-      var d = el("span", "v-dot" + (i === 0 ? " active" : ""));
-      vDots.appendChild(d);
+      vDots.appendChild(el("span", "v-dot" + (i === 0 ? " active" : "")));
     }
   }
 
@@ -71,16 +69,15 @@
     if (!current) return;
     var n = current.slides.length;
     index = Math.max(0, Math.min(i, n - 1));
-    vImg.src = current.slug + "/" + current.slides[index];
+    vImg.src = current.dir + "/" + current.slides[index];
     vImg.alt = current.title + " — slide " + (index + 1);
     vCounter.textContent = (index + 1) + " / " + n;
     vPrev.disabled = index === 0;
     vNext.disabled = index === n - 1;
     var dots = vDots.children;
     for (var d = 0; d < dots.length; d++) dots[d].classList.toggle("active", d === index);
-    // preload neighbours
     [index - 1, index + 1].forEach(function (k) {
-      if (k >= 0 && k < n) { var p = new Image(); p.src = current.slug + "/" + current.slides[k]; }
+      if (k >= 0 && k < n) { var p = new Image(); p.src = current.dir + "/" + current.slides[k]; }
     });
   }
 
@@ -106,7 +103,9 @@
   vPrev.addEventListener("click", function () { show(index - 1); });
   vNext.addEventListener("click", function () { show(index + 1); });
   vClose.addEventListener("click", close);
-  viewer.addEventListener("click", function (e) { if (e.target === viewer || e.target.classList.contains("viewer-stage")) close(); });
+  viewer.addEventListener("click", function (e) {
+    if (e.target === viewer || e.target.classList.contains("viewer-stage")) close();
+  });
 
   document.addEventListener("keydown", function (e) {
     if (!viewer.classList.contains("open")) return;

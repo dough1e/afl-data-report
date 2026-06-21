@@ -38,9 +38,9 @@ API = "https://graph.facebook.com/v19.0"
 DEFAULT_IG_USER_ID = "17841442146561009"  # @puntedit — already known, not a secret
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-SOCIAL_DIR = REPO_ROOT / "social"
-IG_DIR = SOCIAL_DIR / "instagram"
-MANIFEST = SOCIAL_DIR / "carousels.json"
+IG_DIR = REPO_ROOT / "social" / "instagram"   # media on disk
+MANIFEST = REPO_ROOT / "carousels.json"        # gallery manifest (site root)
+IG_DIR_REL = "social/instagram"                # path the site uses, relative to root
 
 MEDIA_FIELDS = (
     "id,media_type,media_url,thumbnail_url,permalink,caption,timestamp,"
@@ -129,7 +129,7 @@ def main() -> None:
     print(f"Found {len(posts)} posts on the account.\n")
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else {"carousels": []}
-    existing = {c["slug"] for c in manifest.get("carousels", [])}
+    existing = {c.get("id") for c in manifest.get("carousels", [])}
     added = 0
 
     for post in posts:
@@ -159,11 +159,12 @@ def main() -> None:
 
         cover = next((s for s in slides if s.endswith(".png")), slides[0])
         manifest["carousels"].append({
-            "slug": f"instagram/{slug}",
+            "id": slug,
             "title": title,
             "blurb": (cap[0] if cap else "")[:140],
             "tag": f"Instagram · {date}",
             "permalink": post.get("permalink"),
+            "dir": f"{IG_DIR_REL}/{slug}",
             "cover": cover,
             "slides": slides,
         })
