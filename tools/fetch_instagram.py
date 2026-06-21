@@ -39,7 +39,7 @@ DEFAULT_IG_USER_ID = "17841442146561009"  # @puntedit — already known, not a s
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 IG_DIR = REPO_ROOT / "social" / "instagram"   # media on disk
-MANIFEST = REPO_ROOT / "carousels.json"        # gallery manifest (site root)
+MANIFEST = REPO_ROOT / "feed.json"             # the @puntedit feed manifest (site root)
 IG_DIR_REL = "social/instagram"                # path the site uses, relative to root
 
 MEDIA_FIELDS = (
@@ -136,7 +136,9 @@ def main() -> None:
         date = (post.get("timestamp") or "")[:10]
         cap = (post.get("caption") or "").splitlines()
         title = cap[0][:80] if cap else "Instagram post"
-        slug = f"ig-{date}-{slugify(title, post['id'][-6:])}"
+        # unique slug from the post shortcode (captions are often blank → collisions)
+        code = re.search(r"/(?:p|reel|tv)/([^/?]+)", post.get("permalink", "") or "")
+        slug = f"ig-{date}-{code.group(1) if code else post['id'][-8:]}"
         if slug in existing:
             print(f"· skip (already in gallery): {slug}")
             continue
@@ -149,7 +151,7 @@ def main() -> None:
         print(f"+ {slug}  ({len(units)} item(s), {post.get('media_type')})")
         slides: list[str] = []
         for i, u in enumerate(units, 1):
-            ext = "mp4" if u["kind"] == "video" else "png"
+            ext = "mp4" if u["kind"] == "video" else "jpg"
             name = f"slide_{i:02d}.{ext}"
             if download(u["url"], IG_DIR / slug / name, args.dry_run):
                 slides.append(name)
@@ -157,7 +159,7 @@ def main() -> None:
             if u["kind"] == "video" and u.get("poster"):
                 download(u["poster"], IG_DIR / slug / f"slide_{i:02d}_poster.png", args.dry_run)
 
-        cover = next((s for s in slides if s.endswith(".png")), slides[0])
+        cover = next((s for s in slides if not s.endswith(".mp4")), slides[0])
         manifest["carousels"].append({
             "id": slug,
             "title": title,
