@@ -137,6 +137,11 @@ a { color: inherit; text-decoration: none; }
 .report-feature:hover .btn { background: var(--accent); }
 .btn:hover { transform: translateY(-1px); }
 
+/* ---------- Instagram feed embeds ---------- */
+.ig-embed-wrap { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; }
+.ig-embed-wrap .instagram-media { margin: 0 !important; }
+.ig-embed-wrap iframe { max-width: 100% !important; }
+
 /* ---------- Footer ---------- */
 .site-foot { border-top: 1px solid var(--line); padding: 34px 0 50px; }
 .foot-links { display: flex; gap: 24px; font-size: 14px; color: var(--ink-soft); }
